@@ -37,13 +37,13 @@ main .mainText {
     display: block;
 }
 
-main .mainText + img{
+main .mainText + img {
     width: 400px;
 }
 
-main .mainText img{
-   height: 40px;
-   text-align: left;
+main .mainText img {
+    height: 40px;
+    text-align: left;
 }
 
 main .mainNumber {
@@ -87,6 +87,60 @@ main .mainNumber ul li h4 {
     font-size: 1.2rem;
 }
 
+@media screen and (max-width: 975px) {
+    main .mainNumber ul li h6 {
+        font-size: 0.6rem;
+    }
+
+    main .mainNumber ul li h4 {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    main {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-image: url("image/bg3.png");
+    }
+
+    main .mainText {
+        position: absolute;
+        top: calc(40% - 60px);
+        padding-left: 5%;
+        display: block;
+    }
+
+    main .mainText img {
+        height: 30px;
+        text-align: left;
+    }
+
+    main .mainNumber {
+        display: flex;
+        flex-direction: column;
+    }
+    main .mainNumber ul {
+        display: block;
+        margin-left: 5vw;
+        padding-bottom: 2vh;
+    }
+
+    main .mainNumber ul li {
+        margin: 10px;
+    }
+
+    main .mainNumber ul li:nth-child(1) .mainLeftLine {
+        margin-left: 15px;
+    }
+    main .mainNumber ul li .mainLeftLine::after {
+        background-color: transparent;
+    }
+}
+
+/* @media screen and (max-width: 575px) {
+} */
+
 .wrapper {
     margin: 0 auto;
     padding: 10px;
@@ -97,22 +151,33 @@ main .mainNumber ul li h4 {
     column-gap: 0px; */
 }
 
-.wrapper .masonry figure{
+.wrapper .masonry figure {
     width: 48vw;
 }
 
-footer{
+@media screen and (max-width: 975px) {
+    .wrapper .masonry figure {
+        width: 46vw;
+    }
+}
+
+@media screen and (max-width: 700px) {
+   
+
+}
+
+footer {
     clear: both;
     background-color: #333;
     text-align: center;
     color: white;
 }
 
-footer h6{
+footer h6 {
     padding-bottom: 20px;
 }
 
-footer .footer_main{
+footer .footer_main {
     display: flex;
     max-width: 960px;
     height: 100px;
@@ -121,31 +186,49 @@ footer .footer_main{
     margin: auto;
     color: white;
     margin-bottom: 20px;
-    
 }
 
-footer .footer_main .footer_l{
+footer .footer_main .footer_l {
     display: flex;
     width: 50%;
-    
 }
 
-footer .footer_main .footer_l a{
+footer .footer_main .footer_l a {
     display: flex;
     color: white;
-    text-decoration:none;
+    text-decoration: none;
 }
 
-footer .footer_main .footer_r{
+footer .footer_main .footer_r {
     display: flex;
     width: 50%;
     align-items: center;
     justify-content: flex-end;
 }
 
-footer .footer_main .footer_r i{
+footer .footer_main .footer_r i {
     margin: 0 20px;
     color: white;
+}
+
+@media screen and (max-width: 700px) {
+    footer {
+        clear: both;
+        background-color: #333;
+        text-align: center;
+        color: white;
+    }
+    
+    footer h6 {
+        padding-top: 40px;
+        padding-bottom: 20px;
+    }
+
+    footer .footer_main {
+        display: block;
+        width: 100%;
+    }
+
 }
 
 /* .item {

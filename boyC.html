@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>琪琪作品集</title>
+</head>
+
+<!-- <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-auth.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-firestore.js"></script>  -->
+<script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-storage.js"></script>
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyAsO5KqxlfEdhpg9XE82N8yq8ej31cMzNQ",
+        authDomain: "angel-0118.firebaseapp.com",
+        databaseURL: "https://angel-0118.firebaseio.com",
+        projectId: "angel-0118",
+        storageBucket: "angel-0118.appspot.com",
+        messagingSenderId: "510444520734",
+        appId: "1:510444520734:web:a3d37b015a9f146a58350f",
+        measurementId: "G-YH5E1J39H0"
+    };
+    // Initialize Firebase
+    var app=firebase.initializeApp(firebaseConfig);
+
+    var picDoc = [];
+    var image = [];
+
+function getPicData(){
+    var db = firebase.firestore(app);
+    var docRef = db.collection("angel").doc("男C字燙");
+    docRef.get().then(function (doc) {
+        console.log('doc', doc);
+        if (doc.exists) {
+            console.log("Document data:", doc.data());
+            picDoc=doc.data().picName;
+         
+            picDoc.forEach((element) => {
+                console.log('element', element);
+                getPicUrl(element);
+            });
+            
+            
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }).catch(function (error) {
+        console.log("Error getting document:", error);
+    });
+    
+}
+
+ function getPicUrl(name){
+    
+    var storage = firebase.storage();
+    var storageRef = storage.ref();
+   
+    storageRef.child(`男C字燙/${name}`).getDownloadURL().then((url)=> {
+        console.log(url);
+    });
+ }
+    
+ getPicData();
+// getPicUrl('test.jpg');
+</script>
+
+<body>
+
+
+
+
+
+</body>
+
+</html>
