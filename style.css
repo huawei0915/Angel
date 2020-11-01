@@ -26,7 +26,7 @@ main {
     position: relative;
     width: 100%;
     height: calc(100vh - 60px);
-    background-image: url("image/bg.jpg");
+    background-image: url("image/newBg.png");
     background-size: cover;
 }
 
@@ -162,7 +162,7 @@ main .mainNumber ul li h4 {
 }
 
 @media screen and (max-width: 700px) {
-   
+
 
 }
 
@@ -218,7 +218,7 @@ footer .footer_main .footer_r i {
         text-align: center;
         color: white;
     }
-    
+
     footer h6 {
         padding-top: 40px;
         padding-bottom: 20px;
@@ -237,9 +237,9 @@ footer .footer_main .footer_r i {
     box-sizing: border-box;
     border: 10px solid white;
     margin: 5px;
-    -webkit-column-break-inside: avoid; 
-    page-break-inside: avoid; 
-    break-inside: avoid; 
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
 } */
 
 .masonry img {
