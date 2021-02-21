@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="hair.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-firestore.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+    <div id="app">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+            <a class="navbar-brand" href="#">
+                <img src="./image/hair_animated.svg" height="40" class="d-inline-block align-top align-center" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-flex justify-content-end " id="navbarNav">
+                <ul class="navbar-nav">
+
+                    <li class="nav-item  d-flex ">
+                        <img class="mt-2 mr-2" src="./image/notifications-24px.svg" width="24" height="24" alt="">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#notification">最新消息</a>
+                    </li>
+                    <li class="nav-item d-flex ">
+                        <img class="mt-2 mr-2" src="./image/camera_enhance-24px.svg" width="24" height="24" alt="">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#upload">上傳圖片</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+
+        <section v-if="page===''">
+
+            <div class="row" style="width: 80vw; margin: 20px auto;">
+
+                <div class="col-lg-3 col-md-3 col-10" v-for="item in cardData">
+                    <div class=" card col-12">
+                        <img class="card-img-top" :src="item.categoryImage" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.categoryName}}</h5>
+                            <p class="card-text">{{item.categoryDescription}}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-primary" data-toggle="collapse" :href="`#${item.categoryId}`" role="button"
+                                aria-expanded="false" :aria-controls="`{item.categoryId}'">
+                                查看更多造型
+                            </a>
+                        </div>
+                        <div class="collapse" :id="`${item.categoryId}`">
+                            <div class=" card-body">
+                                <div class="list-group" v-for="list in item.categoryItem">
+                                    <a href="#" class="list-group-item list-group-item-action ">
+                                        {{list}}
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+        </section>
+
+
+        <section v-if="page===''">
+            <div calss=" justify-content-center" style="width: 80vw; margin: 20px auto; ">
+                <div class="row justify-content-center">
+
+                    <div v-for="item in imagefile"
+                        class="photo col-lg-2 col-md-2 col-sm-2 col-xs-2 col-10 card bg-dark text-white p-0 m-2">
+                        <div class="back ">
+                            <p>{{item.title}}</p>
+                            <span>{{item.title}}</span>
+
+
+                        </div>
+                        <div class="front">
+                            <img class="  card-img" v-bind:src="item.image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="send">
+                <button class="btn btn-outline-light" data-toggle="modal"
+                    data-target="#exampleModalCenter">馬上預約</button>
+            </div>
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">預約美髮</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">您的大名</label>
+                                    <input type="text" class="form-control" placeholder="請輸入您的姓名">
+                                </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput2">連絡電話</label>
+                                    <input type="text" class="form-control" placeholder="請輸入您的聯絡電話">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">服務項目</label>
+                                    <select class="form-control">
+                                        <option>染</option>
+                                        <option>燙</option>
+                                        <option>造型</option>
+                                        <option>剪</option>
+
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput2">預約日期</label>
+                                    <input type="date" class="form-control" placeholder="請選擇想預約的日期">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">備註</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary">送出</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="modal fade" id="notification" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">最新消息</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="./image/a.png" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="./image/b.png" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="./image/c.png" class="d-block w-100" alt="...">
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                                data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                                data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="upload" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">上傳圖片</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">選擇圖片資料夾
+                                </label>
+                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">圖片資料夾名稱</label>
+                                <input type="text" class="form-control" placeholder="請輸入資料夾名稱">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">圖片分類</label>
+                                <select class="form-control">
+                                    <option>染</option>
+                                    <option>燙</option>
+                                    <option>造型</option>
+                                    <option>剪</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">造型分類</label>
+                                <select class="form-control">
+                                    <option>染</option>
+                                    <option>燙</option>
+                                    <option>造型</option>
+                                    <option>剪</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">髮型介紹</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary">送出</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    </div>
+
+    <script>
+        var myViewModel = new Vue({
+            el: '#app',
+            data: {
+
+                imagefile: [],
+                page: '',
+                cardData: [
+                    {
+
+                        categoryId: 'prem',
+                        categoryName: '燙 PREM',
+                        categoryDescription: 'This is a wider card with supporting text below as a natural lead-in to',
+                        categoryImage: './image/1.png',
+                        categoryItem: ['上直下捲燙', '女下擺燙', '女內灣c字燙', ' 女手繞燙', '仿電棒燙', '線條C字燙', '燙直水波質感燙', ' 韓風燙髮'],
+                    },
+                    {
+                        categoryId: 'dye',
+                        categoryName: '染 HAIR DYE',
+                        categoryDescription: 'This is a wider card with supporting text below as a natural lead-in to',
+                        categoryImage: './image/2.png',
+                        categoryItem: ['女內層小心機染', '女全染', '女挑染', '女創意染', '女漸層人魚染', '男染髮', '資深堂耳圈染', '女創意染',]
+                    },
+                    {
+
+                        categoryId: 'modeling',
+                        categoryName: '造型 MODELING',
+                        categoryDescription: 'This is a wider card with supporting text below as a natural lead-in to',
+                        categoryImage: './image/3.png',
+                        categoryItem: ['女油頭', '小孩刻髮', '男生刻髮', '男剪油頭', '電棒造型', '編髮造型']
+                    },
+                    {
+
+                        categoryId: 'cut',
+                        categoryName: '剪 CUT',
+                        categoryDescription: 'This is a wider card with supporting text below as a natural lead-in to',
+                        categoryImage: './image/4.png',
+                        categoryItem: ['女Bob髮', '女不對稱髮', '女中性髮', '男生剪髮', '兒童剪髮',]
+
+                    },
+                ]
+            },
+            created: function () {
+                var config = {
+                    apiKey: "AIzaSyAsO5KqxlfEdhpg9XE82N8yq8ej31cMzNQ",
+                    authDomain: "angel-0118.firebaseapp.com",
+                    databaseURL: "https://angel-0118.firebaseio.com",
+                    projectId: "angel-0118",
+                    storageBucket: "angel-0118.appspot.com",
+                    messagingSenderId: "510444520734",
+                    appId: "1:510444520734:web:a3d37b015a9f146a58350f",
+                    measurementId: "G-YH5E1J39H0"
+                };
+                firebase.initializeApp(config);
+                var storageRef = firebase.storage().ref();
+
+
+                var dir = "/image/img";
+                var fileextension = ".jpg";
+                $(document).ready(function () {
+                    $.ajax({
+                        url: dir,
+                        success: function (data) {
+                            $(data).find("a:contains(" + fileextension + ")").each(function () {
+                                var filename = this.href.replace(window.location.host, "").replace("http://", "");
+
+
+                                myViewModel.imagefile.push({
+                                    title: '我是髮型介紹',
+                                    image: filename
+                                })
+                                myViewModel.imagefile.forEach(element => {
+                                    console.log(element.image);
+                                });
+
+
+
+                            });
+                        }
+                    });
+
+
+                });
+            }
+
+        });
+    </script>
+
+
+</body>
+
+</html>
+
+
+
+<script>
+    var uploadFileInput = document.getElementById("uploadFileInput");
+    uploadFileInput.addEventListener("change", function () {
+        var file = this.files[0];
+        var uploadTask = storageRef.child('images/' + file.name).put(file);
+        uploadTask.on('state_changed', function (snapshot) {
+            // 觀察狀態變化，例如：progress, pause, and resume
+
+            // 取得檔案上傳狀態，並用數字顯示
+
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+
+                    console.log('Upload is paused');
+                    break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+
+                    console.log('Upload is running');
+                    break;
+            }
+        }, function (error) {
+            // Handle unsuccessful uploads
+
+        }, function () {
+            // Handle successful uploads on complete
+
+            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+
+            var downloadURL = uploadTask.snapshot.downloadURL;
+        });
+    }, false);
+
+    var getPicBtn = document.getElementById("getPicBtn");
+    var downloadedImg = document.getElementById("downloadedImg");
+    getPicBtn.addEventListener("click", function () {
+        var pathReference = storageRef.child('images/bank.png');
+        pathReference.getDownloadURL().then(function (url) {
+            downloadedImg.src = url;
+        })
+    }, false)
+
+    var getImgMetaBtn = document.getElementById("getImgMetaBtn");
+    getImgMetaBtn.addEventListener("click", function () {
+        // Get metadata properties
+        storageRef.child('images/bank.png').getMetadata().then(function (metadata) {
+            console.log("取得照片資料", metadata);
+        }).catch(function (error) {
+            // Uh-oh, an error occurred!
+        });
+    }, false);
+
+    var setImgMetaBtn = document.getElementById("setImgMetaBtn");
+    setImgMetaBtn.addEventListener("click", function () {
+        var newMetadata = {
+            cacheControl: 'public,max-age=300',
+            customMetadata: {
+                'location': 'Yosemite, CA, USA',
+                'activity': 'Hiking'
+            }
+        }
+
+        // Update metadata properties
+        storageRef.child('images/r2.jpeg').updateMetadata(newMetadata).then(function (metadata) {
+            console.log("更新後的照片資料：", metadata);
+        }).catch(function (error) {
+            // Uh-oh, an error occurred!
+        });
+    }, false)
+
+    var deletePicBtn = document.getElementById("deletePicBtn");
+    deletePicBtn.addEventListener("click", function () {
+        storageRef.child('images/r2.jpeg').delete().then(function () {
+            console.log("R2被刪除了");
+        }).catch(function (error) {
+            // Uh-oh, an error occurred!
+        });
+    }, false);
+
+</script>
