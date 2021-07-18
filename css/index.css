@@ -1,0 +1,48 @@
+body{
+    background-image:url("../image/bg.png");
+    background-size: 100% auto;
+    /* background-repeat: no-repeat; */
+
+}
+
+#app{
+ margin: 0 auto;
+}
+
+
+.card img{
+    border-radius: 10px;
+
+}
+.mobile{
+    display: none;
+}
+
+.category_item{
+    background-color: #ca4855;
+    color: white;
+    border-radius: 5px;
+}
+
+.category_items{
+    display: flex;
+}
+
+.categoryBody_item{
+    background-color: #927e7e;
+    color: white;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 600px){
+    .web{
+        display: none;
+    }
+    .mobile{
+        display: block;
+        width: 50%;
+       background: none;
+       background-color: none;
+
+    }
+}
