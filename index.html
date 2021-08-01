@@ -48,6 +48,10 @@
 
         <div class="content">
             <div class="hair_catrgory w-100" id="category">
+                <div class="title">
+                    <img src="./image/item_bg/title_1.png" width="200px">
+                </div>
+
 
                 <div style="display:none;">
                     <div class="card" style="text-align: center; margin: 5% 0px;" data-toggle="collapse" href="#dye"
@@ -79,23 +83,21 @@
                         </div>
                     </div>
                 </div>
-
-
-                <div class="card" style="text-align: center; margin: 5% 0px;" data-toggle="collapse" href="#dye"
+                <div class="card" style="text-align: center; margin: 2% 0px;" data-toggle="collapse" href="#dye"
                     role="button" aria-expanded="false" aria-controls="dye">
                     <img class="web" src="image/hair-dye.png" v-on:click="searchHead('染')">
-                    <img class="mobile" src="image/1.png" v-on:click="searchHead('染')">
+                    <!-- <img class="mobile" src="image/1.png" v-on:click="searchHead('染')"> -->
                 </div>
                 <div class="collapse collapsing " id="dye" data-parent="#category">
                     <div class="d-flex">
                         <div v-for="item in category">
-                            <button class="category_item btn m-2" v-on:click="searchBody(item)">{{ item }}</button>
+                            <button class="category_item btn m-2" v-on:click="searchBody(item.fullPath)">{{ item.name }}</button>
                         </div>
                     </div>
-                    <div class="d-flex mx-1">
+                    <div class="d-flex">
                         <div v-for="item in categoryBody" class="categoryBody_item btn m-2">
-                            <div v-on:click="loadImage(item,'染')" class="">
-                                {{ item }}
+                            <div v-on:click="loadImage(item.fullPath,'染')" class="">
+                                {{ item.name }}
                             </div>
                         </div>
                     </div>
@@ -112,27 +114,27 @@
 
 
 
-                <div class="card" style="text-align: center; margin: 5% 0px;" data-toggle="collapse" href="#perm"
+                <div class="card" style="text-align: center; margin: 2% 0px;" data-toggle="collapse" href="#perm"
                     role="button" aria-expanded="false" aria-controls="perm">
                     <img class="web" src="image/perm.png" v-on:click="searchHead('燙')">
-                    <img class="mobile" src="image/4.png" v-on:click="searchHead('燙')">
+                    <!-- <img class="mobile" src="image/4.png" v-on:click="searchHead('燙')"> -->
                 </div>
                 <div class="collapse collapsing " id="perm" data-parent="#category">
                     <div class="d-flex">
                         <div v-for="item in category">
-                            <button class="category_item btn m-2" v-on:click="searchBody(item)">{{ item }}</button>
+                            <button class="category_item btn m-2" v-on:click="searchBody(item.fullPath)">{{ item.name }}</button>
                         </div>
                     </div>
-                    <div class="d-flex mx-1">
+                    <div class="d-flex ">
                         <div v-for="item in categoryBody" class="categoryBody_item btn m-2">
-                            <div v-on:click="loadImage(item,'燙')" class="">
-                                {{ item }}
+                            <div v-on:click="loadImage(item.fullPath,'燙')" class="">
+                                {{ item.name }}
                             </div>
                         </div>
                     </div>
                     <div id="hair_item" class="row justify-content-center">
                         <div class="col-md-12">
-                            <div class="row" id="img_perm">
+                            <div class="row " id="img_perm">
 
                             </div>
                         </div>
@@ -141,27 +143,27 @@
 
 
 
-                <div class="card" style="text-align: center; margin: 5% 0px;" data-toggle="collapse" href="#modeling"
+                <div class="card" style="text-align: center; margin: 2% 0px;" data-toggle="collapse" href="#modeling"
                     role="button" aria-expanded="false" aria-controls="modeling">
                     <img class="web" src="image/modeling.png" v-on:click="searchHead('造型')">
-                    <img class="mobile" src="image/3.png" v-on:click="searchHead('造型')">
+                    <!-- <img class="mobile" src="image/3.png" v-on:click="searchHead('造型')"> -->
                 </div>
                 <div class="collapse collapsing " id="modeling" data-parent="#category">
                     <div class="d-flex">
                         <div v-for="item in category">
-                            <button class="category_item btn m-2" v-on:click="searchBody(item)">{{ item }}</button>
+                            <button class="category_item btn m-2" v-on:click="searchBody(item.fullPath)">{{ item.name }}</button>
                         </div>
                     </div>
                     <div class="d-flex mx-1">
                         <div v-for="item in categoryBody" class="categoryBody_item btn m-2">
-                            <div v-on:click="loadImage(item,'造型')" class="">
-                                {{ item }}
+                            <div v-on:click="loadImage(item.fullPath,'造型')" class="">
+                                {{ item.name }}
                             </div>
                         </div>
                     </div>
                     <div id="hair_item" class="row justify-content-center">
                         <div class="col-md-12">
-                            <div class="row" id="img_modeling">
+                            <div class="row " id="img_modeling">
 
                             </div>
                         </div>
@@ -170,27 +172,27 @@
 
 
 
-                <div class="card" style="text-align: center; margin: 5% 0px;">
+                <div class="card" style="text-align: center; margin: 2% 0px;">
                     <img class="web" src="image/cut-hair.png" v-on:click="searchHead('剪')" data-toggle="collapse"
                         href="#cut" role="button" aria-expanded="false" aria-controls="cut">
-                    <img class="mobile" src="image/2.png" v-on:click="searchHead('剪')">
+                    <!-- <img class="mobile" src="image/2.png" v-on:click="searchHead('剪')"> -->
                 </div>
-                <div class="collapse collapsing " id="cut" data-parent="#category">
+                <div class="collapse collapsing mb-5" id="cut" data-parent="#category">
                     <div class="d-flex">
                         <div v-for="item in category">
-                            <button class="category_item btn m-2" v-on:click="searchBody(item)">{{ item }}</button>
+                            <button class="category_item btn m-2" v-on:click="searchBody(item.fullPath)">{{ item.name }}</button>
                         </div>
                     </div>
-                    <div class="d-flex mx-1">
+                    <div class="d-flex">
                         <div v-for="item in categoryBody" class="categoryBody_item btn m-2">
-                            <div v-on:click="loadImage(item,'剪')" class="">
-                                {{ item }}
+                            <div v-on:click="loadImage(item.fullPath,'剪')" class="">
+                                {{ item.name }}
                             </div>
                         </div>
                     </div>
-                    <div id="hair_item" class="row justify-content-center">
+                    <div id="hair_item " class="row justify-content-center">
                         <div class="col-md-12">
-                            <div class="row" id="img_cut">
+                            <div class="row " id="img_cut">
 
                             </div>
                         </div>
@@ -216,10 +218,22 @@
 
 
         </div> -->
+        <div class="footer">
+            <div>
 
+                    <span><a href="tel:+886-966608016">TEL：886-966-608-016</a></span><br>
+                    <span>Appointment: Monday to Sunday 09:00~19:30</span><br>
+                    <span>
+                        <a href="http://maps.google.com/?q=235 Yuanshan Road, Zhonghe District, New Taipei City" target="_blank">Address: 新北市中和區員山路287號</a>
+                    </span>
+
+
+            </div>
+        </div>
 
 
     </div>
+
 
 
     <script>
@@ -268,12 +282,19 @@
                     this.category = [];
                     this.categoryBody = [];
                     $("#hair_item").empty();
+                    $("#img_dye").empty();
+                    $("#img_perm").empty();
+                    $("#img_modeling").empty();
+                    $("#img_cut").empty();
                     !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app()
                     const storageReference = firebase.storage().ref(`${item}`);
                     storageReference.listAll().then(res => {
                         this.folder = res.prefixes
                         res.prefixes.forEach(element => {
-                            this.category.push(element.fullPath)
+                            this.category.push({
+                                fullPath: element.fullPath,
+                                name: element.name,
+                            })
                         })
 
                     })
@@ -283,13 +304,20 @@
                     this.folder = [];
                     this.categoryBody = []
                     $("#hair_item").empty();
+                    $("#img_dye").empty();
+                    $("#img_perm").empty();
+                    $("#img_modeling").empty();
+                    $("#img_cut").empty();
                     !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app()
                     const storageReference = firebase.storage().ref(`${item}`);
                     storageReference.listAll().then(res => {
                         this.folder = res.prefixes
                         console.log('res.prefixes', res.prefixes);
                         res.prefixes.forEach(element => {
-                            this.categoryBody.push(element.fullPath)
+                            this.categoryBody.push({
+                                fullPath: element.fullPath,
+                                name: element.name,
+                            })
                         });
                     })
                 },
@@ -313,7 +341,7 @@
 
                                 var listRefChild = storageRef.child(`${itemRef.fullPath}`);
                                 listRefChild.getDownloadURL().then(function (url) {
-                                    var item = `<a href="${url}" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 col-">
+                                    var item = `<a href="${url}" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3 col-4 mt-2">
                                     <img src="${url}" class="img-fluid"></a>`;
 
                                     console.log(url);

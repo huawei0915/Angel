@@ -8,15 +8,36 @@ body{
 #app{
  margin: 0 auto;
 }
+.card:hover{
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
 
+}
 
-.card img{
+.card img:hover{
     border-radius: 10px;
 
+
+
 }
-.mobile{
+
+.footer{
+    background-color: #8d4e56;
+    height: 90px;
+    color:white;
+    text-decoration: none;
+    padding: 10px 20px;
+}
+
+.footer a{
+    text-decoration: none;
+    color:white;
+}
+
+
+
+/* .mobile{
     display: none;
-}
+} */
 
 .category_item{
     background-color: #ca4855;
@@ -29,20 +50,41 @@ body{
 }
 
 .categoryBody_item{
-    background-color: #927e7e;
+    background-color: #c07d7d;
     color: white;
     border-radius: 5px;
 }
 
-@media screen and (max-width: 600px){
-    .web{
-        display: none;
-    }
-    .mobile{
-        display: block;
-        width: 50%;
-       background: none;
-       background-color: none;
+.img-fluid{
+    border-radius: 5px;
+}
+.img-fluid:hover{
+    margin-top: -10px;
+}
+.title img{
+    width: 200px;
+}
 
+@media screen and (max-width: 600px){
+    .title img{
+        width: 80px;
     }
+    .category_item{
+
+        font-size: 12px;
+    }
+    .categoryBody_item{
+
+        font-size: 12px;
+    }
+    .card{
+        background-color: none;
+    }
+    .footer{
+
+        height: 70px;
+
+        font-size: 12px;
+    }
+
 }
