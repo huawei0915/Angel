@@ -5,15 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>安琪造型沙龍</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-
-
-
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
     <link href="css/index.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -23,8 +18,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js">
 
     </script>
@@ -51,8 +44,6 @@
                 <div class="title">
                     <img src="./image/item_bg/title_1.png" width="200px">
                 </div>
-
-
                 <div style="display:none;">
                     <div class="card" style="text-align: center; margin: 5% 0px;" data-toggle="collapse" href="#dye"
                         role="button" aria-expanded="false" aria-controls="dye">
@@ -110,10 +101,6 @@
                     </div>
                 </div>
 
-
-
-
-
                 <div class="card" style="text-align: center; margin: 2% 0px;" data-toggle="collapse" href="#perm"
                     role="button" aria-expanded="false" aria-controls="perm">
                     <img class="web" src="image/perm.png" v-on:click="searchHead('燙')">
@@ -140,8 +127,6 @@
                         </div>
                     </div>
                 </div>
-
-
 
                 <div class="card" style="text-align: center; margin: 2% 0px;" data-toggle="collapse" href="#modeling"
                     role="button" aria-expanded="false" aria-controls="modeling">
@@ -170,8 +155,6 @@
                     </div>
                 </div>
 
-
-
                 <div class="card" style="text-align: center; margin: 2% 0px;">
                     <img class="web" src="image/cut-hair.png" v-on:click="searchHead('剪')" data-toggle="collapse"
                         href="#cut" role="button" aria-expanded="false" aria-controls="cut">
@@ -198,43 +181,18 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
-
         </div>
-
-
-        <!-- <div v-for="item in items">
-            <button class="btn btn-primary m-2" v-on:click="searchHead(item.cName)">{{ item.cName }}</button>
-        </div>
-        <div v-for="item in category">
-            <button class="btn btn-primary m-2" v-on:click="searchBody(item)">{{ item }}</button>
-        </div>
-        <div v-for="item in categoryBody">
-            <button class="btn btn-primary m-2" v-on:click="loadImage(item,'染')">{{ item }}</button>
-        </div>
-        <div id="img_dye">
-
-
-        </div> -->
         <div class="footer">
             <div>
-
                     <span><a href="tel:+886-966608016">TEL：02-2959-7628</a></span><br>
                     <span>Appointment: Monday to Sunday 10:00~20:00</span><br>
                     <span>
                         <a href="http://maps.google.com/?q=235 Yuanshan Road, Zhonghe District, New Taipei City" target="_blank">Address: 新北市板橋區懷仁街78號 </a>
                     </span>
-
-
             </div>
         </div>
-
-
     </div>
-
-
 
     <script>
         var firebaseConfig = {
@@ -355,26 +313,12 @@
                                     } else if (category === '剪') {
                                         $('#img_cut').append(item);
                                     }
-
-
                                 });
-
-
                             });
                         }).catch((error) => {
                             // Uh-oh, an error occurred!
                         });
-
                 },
-
-
-
-
-
-
-
-
-
             },
         })
     </script>
@@ -384,9 +328,5 @@
             $(this).ekkoLightbox();
         });
     </script>
-
 </body>
-
-
-
 </html>
